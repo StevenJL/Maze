@@ -1,0 +1,19 @@
+.title {
+    background-color: red;
+}
+
+.maze {
+    display: block;
+    border: 3px solid black;
+}
+.row {
+    display: inline-block;
+    width: 100%;
+}
+.cell {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border: 1px solid black;
+    float: left;
+}
