@@ -128,8 +128,8 @@ const renderMaze = () => {
             v = wasm.getMaze(x, y);
             if (v == 0) color = "white"; // White Path
             else if (v == 1) color = "black"; // Black Wall
-            else if (v == 2) color = "yellow"; // Yellow Cheese
-            else if (v == 3) color = "grey"; // Grey Mouse
+            else if (v == 2) color = "#f2da29"; // Yellow Cheese
+            else if (v == 3) color = "#898072"; // Grey Mouse
             else {
                 console.log(v);
                 color = "red"; // Red Error
@@ -140,7 +140,7 @@ const renderMaze = () => {
 };
 
 const renderSolution = (x, y) => {
-    setColor(x, y, "green");
+    setColor(x, y, "#4ee0b4");
 
     d = wasm.getDistance(x,y);
     if (x > 0 && wasm.getDistance(x-1,y) < d) {
@@ -159,22 +159,22 @@ const renderSolution = (x, y) => {
 
 // BUTTONS
 
-var CURSOR_OBJECT = 0; // Default to path
+var CURSOR_OBJECT = 1; // Default to wall
 
-document.getElementById("button-path").onclick = function () {
-    CURSOR_OBJECT = 0;
+const setCursorObject = (v) => {
+    CURSOR_OBJECT = v;
 }
-document.getElementById("button-wall").onclick = function () {
-    CURSOR_OBJECT = 1;
-}
-document.getElementById("button-cheese").onclick = function () {
-    CURSOR_OBJECT = 2;
-}
-document.getElementById("button-mouse").onclick = function () {
-    CURSOR_OBJECT = 3;
-}
+
 document.getElementById("button-clear").onclick = function () {
     wasm.clearMaze();
+    MOUSE_X = null;
+    MOUSE_Y = null;
+    CHEESE_X = null;
+    CHEESE_Y = null;
+    renderMaze();
+}
+document.getElementById("button-fill").onclick = function () {
+    wasm.fillMaze();
     MOUSE_X = null;
     MOUSE_Y = null;
     CHEESE_X = null;

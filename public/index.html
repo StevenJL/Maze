@@ -1,36 +1,43 @@
 <html>
-<head>
+  <head>
     <link rel="stylesheet" type="text/css" href="css/styles.css"/>
-</head>
-<body>
-  <div id="title">
-    <img src="images/MazeLogo.png" alt="Maze Logo" width="200px" height="auto" style="float: left;">
-  </div>
-  <div class="maze">
-  </div>
-  <div id="buttons-container">
-    <button type="button" id="button-path">
-      Path
-    </button>
-    <button type="button" id="button-wall">
-      Wall
-    </button>
-    <button type="button" id="button-cheese">
-      Cheese
-    </button>
-    <button type="button" id="button-mouse">
-      Mouse
-    </button>
-    <button type="button" id="button-clear">
-      Clear Maze
-    </button>
-    <button type="button" id="button-random">
-      Random Maze
-    </button>
-    <button type="button" id="button-solve">
-      Toggle Solving (Off)
-    </button>
-  </div>
-</body>
-<script src="/js/maze.js"></script>
+  </head>
+  <body>
+    <div id="title">
+      <img src="images/MazeLogo.png" alt="Maze Logo" width="200px" height="auto" style="float: left;">
+    </div>
+    <div class="maze">
+    </div>
+    <div id="buttons-container">
+      <div id="drawing-buttons">
+        Add:<br>
+        <input type="radio" name="draw" value="wall" onclick="setCursorObject(1);" checked> Wall<br>
+        <input type="radio" name="draw" value="path" onclick="setCursorObject(0);"> Path<br>
+        <input type="radio" name="draw" value="cheese" onclick="setCursorObject(2);"> Cheese<br>
+        <input type="radio" name="draw" value="mouse" onclick="setCursorObject(3);"> Mouse<br>
+      </div>
+      <br>
+      <div id="modifying-buttons">
+        Tools:
+        <button type="button" class="button" id="button-clear">
+          Clear Maze
+        </button>
+        <button type="button" class="button" id="button-fill">
+          Fill Maze
+        </button>
+        <button type="button" class="button" id="button-random">
+          Random Maze
+        </button>
+        <span class="glyphicon glyphicon-trash"></span>
+      </div>
+      <br>
+      <div id="solving-buttons">
+        Directions:
+        <button type="button" class="button" id="button-solve">
+          Toggle Directions (Off)
+        </button>
+      </div>
+    </div>
+  </body>
+  <script src="/js/maze.js"></script>
 </html>

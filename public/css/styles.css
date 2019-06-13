@@ -25,6 +25,11 @@
     display: inline-block;
     width: 130px;
 }
-#buttons-container > button {
+.button {
     width: 100%;
+    padding: 3px;
+    font-family: Arial;
+}
+.button:hover {
+    background: #c0d5f7;
 }

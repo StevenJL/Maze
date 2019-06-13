@@ -4,7 +4,7 @@ const app = express();
 
 const WASM_DIR = 'build/'
 
-app.use(express.static('public'));
+app.use(express.static(__dirname + '/public/'));
 app.use('/wasm/', express.static(WASM_DIR, {index: false}));
 
 app.get('/wasm/', (req, res) => {

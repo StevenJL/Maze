@@ -24,6 +24,15 @@ export function clearMaze() : void {
   }
 }
 
+export function fillMaze() : void {
+  let x: i32, y: i32;
+  for(x = 0; x < 50; x++) {
+    for(y = 0; y < 50; y++) {
+      setMaze(x, y, 1);
+    }
+  }
+}
+
 function initDistances() : void {
   let x: i32, y: i32;
   for(x = 0; x < 50; x++) {
