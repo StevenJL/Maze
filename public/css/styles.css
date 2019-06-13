@@ -1,5 +1,6 @@
-.title {
-    background-color: red;
+#title {
+    display: inline-block;
+    width: 100%;
 }
 
 .maze {
