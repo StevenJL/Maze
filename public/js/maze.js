@@ -21,7 +21,7 @@ document.onmouseup = function (){MOUSE_DOWN = false;}
 var GRID_SIZE = 50;
 
 // Build maze components in html
-maze = document.getElementsByClassName("maze")[0];
+maze = document.getElementById("maze");
 for(var y = 0; y < GRID_SIZE; y++){
     var row = document.createElement("div");
     row.className = "row";
@@ -29,7 +29,7 @@ for(var y = 0; y < GRID_SIZE; y++){
     for(var x = 0; x < GRID_SIZE; x++){
         var cell = document.createElement("div");
         cell.className = "cell";
-        cell.id = `${x},${y}`;
+        cell.id = x;
         let i = x;
         let j = y;
         cell.onclick = function () {
@@ -110,7 +110,7 @@ const randomMaze = () => {
 }
 
 const setColor = (x, y, color) => {
-    maze = document.getElementsByClassName("maze")[0];
+    maze = document.getElementById("maze");
     cell = maze.children[y].children[x];
     cell.style.backgroundColor = color;
 }

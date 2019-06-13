@@ -3,7 +3,7 @@
     width: 100%;
 }
 
-.maze {
+#maze {
     display: block;
     border: 3px solid black;
     width: 600px; /* HACK */
