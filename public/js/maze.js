@@ -36,7 +36,9 @@ for(var y = 0; y < GRID_SIZE; y++){
             clickCell(i, j);
         }
         cell.onmousemove = function () {
-            mouseMoveCell(i, j);
+            if (MOUSE_DOWN) {
+                clickCell(i, j);
+            }
         }
         row.appendChild(cell);
     }
@@ -53,7 +55,7 @@ setInterval(function () {
     }
 }, 100);
 
-var SOLVING = false; // Set true when distances need to be recomputed
+var SOLVING = false; // Are directions turned on?
 setInterval(function () {
     if (SOLVING && MOUSE_X != null && CHEESE_X != null && !DISTANCES_DIRTY)
     {
@@ -65,11 +67,6 @@ setInterval(function () {
 var CHEESE_X, CHEESE_Y;
 var MOUSE_X, MOUSE_Y;
 const clickCell = (x, y) => {
-    if (![2,3].includes(CURSOR_OBJECT)) {
-        return;
-    }
-
-    wasm.setMaze(x, y, CURSOR_OBJECT);
     if(CURSOR_OBJECT == 2) {
         if (CHEESE_X != null
             && CHEESE_Y != null) {
@@ -79,7 +76,7 @@ const clickCell = (x, y) => {
         CHEESE_Y = y;
         DISTANCES_DIRTY = true;
     }
-    if(CURSOR_OBJECT == 3) {
+    if (CURSOR_OBJECT == 3) {
         if (MOUSE_X != null
             && MOUSE_Y != null) {
             wasm.setMaze(MOUSE_X, MOUSE_Y, 0);
@@ -88,17 +85,14 @@ const clickCell = (x, y) => {
         MOUSE_Y = y;
     }
 
-    renderMaze();
-}
-const mouseMoveCell = (x, y) => {
-    if (![0,1].includes(CURSOR_OBJECT)) {
-        return;
-    }
-    if (MOUSE_DOWN) {
-        wasm.setMaze(x, y, CURSOR_OBJECT);
+    var old_val = wasm.getMaze(x, y);
+    var same_maze = (old_val == CURSOR_OBJECT) ||
+                    (CURSOR_OBJECT == 3 && old_val == 0)
+    if(!same_maze) { // Optimization to skip recomputing distances if not needed
         DISTANCES_DIRTY = true;
-        renderMaze();
     }
+    wasm.setMaze(x, y, CURSOR_OBJECT);
+    renderMaze();
 }
 
 // Generate a random maze
@@ -130,10 +124,7 @@ const renderMaze = () => {
             else if (v == 1) color = "black"; // Black Wall
             else if (v == 2) color = "#f2da29"; // Yellow Cheese
             else if (v == 3) color = "#898072"; // Grey Mouse
-            else {
-                console.log(v);
-                color = "red"; // Red Error
-            }
+            else color = "red"; // Red Error
             setColor(x, y, color);
         }
     }
@@ -185,14 +176,10 @@ document.getElementById("button-random").onclick = function () {
     randomMaze();
     renderMaze();
 }
-var blah;
-document.getElementById("button-solve").onclick = function (e) {
-    SOLVING = !SOLVING;
-    if (SOLVING) {
-        this.innerText = "Toggle Solving (On)";
-    }
+
+document.getElementById("directions-toggle").onclick = function () {
+    SOLVING = this.checked;
     if (!SOLVING) {
-        this.innerText = "Toggle Solving (Off)";
         renderMaze();
     }
 }
