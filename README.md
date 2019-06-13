@@ -1,5 +1,6 @@
 # Maze (AdRoll Hackweek Summer 2019)
 ![Maze Logo](https://github.com/lcevans/Maze/blob/master/public/images/MazeLogo.png)
+
 Find your mouse the best route to the cheese!
 
 ## Background
