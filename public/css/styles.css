@@ -5,6 +5,8 @@
 .maze {
     display: block;
     border: 3px solid black;
+    width: 600px; /* HACK */
+    float: left;
 }
 .row {
     display: inline-block;
@@ -16,4 +18,12 @@
     height: 10px;
     border: 1px solid black;
     float: left;
+}
+
+#buttons-container {
+    display: inline-block;
+    width: 100px;
+}
+#buttons-container > button {
+    width: 100%;
 }
