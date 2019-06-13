@@ -53,6 +53,15 @@ setInterval(function () {
     }
 }, 100);
 
+var SOLVING = false; // Set true when distances need to be recomputed
+setInterval(function () {
+    if (SOLVING && MOUSE_X != null && CHEESE_X != null && !DISTANCES_DIRTY)
+    {
+        renderMaze();
+        renderSolution(MOUSE_X, MOUSE_Y);
+    }
+}, 100);
+
 var CHEESE_X, CHEESE_Y;
 var MOUSE_X, MOUSE_Y;
 const clickCell = (x, y) => {
@@ -176,12 +185,14 @@ document.getElementById("button-random").onclick = function () {
     randomMaze();
     renderMaze();
 }
-document.getElementById("button-solve").onclick = function () {
-    if (MOUSE_X == null
-        || CHEESE_X == null) {
-        alert("Set mouse and cheese first!");
+var blah;
+document.getElementById("button-solve").onclick = function (e) {
+    SOLVING = !SOLVING;
+    if (SOLVING) {
+        this.innerText = "Toggle Solving (On)";
     }
-    else {
-        renderSolution(MOUSE_X, MOUSE_Y);
+    if (!SOLVING) {
+        this.innerText = "Toggle Solving (Off)";
+        renderMaze();
     }
 }
