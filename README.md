@@ -4,7 +4,7 @@
 Find your mouse the best route to the cheese!
 
 ## Background
-This mini webapp was built as part of AdRoll's Summer 2019 Hackweek to explore WebAssembly. In particular, it uses WebAssembly code to compute the optimal path between the mouse and the cheese. I suspect vanilla JS could handle these computations just fine... but hey, we build these things to learn ;)
+This mini webapp was built as part of AdRoll's Summer 2019 Hackweek to explore WebAssembly. In particular, it uses WebAssembly code to compute the optimal path between the mouse and the cheese.
 
 ## Demo
 ![Maze Demo](https://github.com/lcevans/Maze/blob/master/MazeDemo.gif)
